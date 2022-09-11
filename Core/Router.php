@@ -26,8 +26,8 @@ class Router
     {
         $url = trim($url, '/');
         $url = $this->removeQueryStringVar($url);
-        d("params controller", $this->params['controller']);
         if ($this->match($url)) {
+            d(" params controller", $this->params['controller']);
             if (array_key_exists('method', $this->params) && ($_SERVER['REQUEST_METHOD'] !== $this->params['method'])) {
                 throw new \Exception("Method " . $_SERVER['REQUEST_METHOD'] . " doesn't supported by this route");
             }
@@ -35,6 +35,7 @@ class Router
 
             if (class_exists($this->params['controller'])) {
                 $controller = $this->params['controller'];
+                d('Controller', $this->params['controller']);
                 unset($this->params['controller']);
 
                 if (method_exists($controller, $this->params['action'])){
@@ -46,9 +47,7 @@ class Router
                         call_user_func_array([$controller, $action], $this->params);
                         $controller->after($action);
                     }
-
-                    d($controller, $action, $this->params);
-                }  else {
+                    } else {
                     throw new \Exception("Action {$this->params['action']}  in class {$controller} not found");
                 }
             } else {
