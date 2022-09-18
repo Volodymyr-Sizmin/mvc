@@ -20,16 +20,43 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="surname" class="form-label">Last Name</label>
-                                    <input type="text" name="surname" class="form-control" id="surname">
+                                    <input type="text"
+                                           name="surname"
+                                           class="form-control"
+                                           id="surname"
+                                           value="<?= !empty($data['surname']) ? $data['surname'] : '' ?>"
+                                    >
+                                    <?php if (!empty($surname_error)): ?>
+                                        <div class="alert alert-danger"><?= $surname_error ?></div>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <input type="email"
+                                           name="email"
+                                           class="form-control"
+                                           id="exampleInputEmail1"
+                                           aria-describedby="emailHelp"
+                                           value="<?= !empty($data['email']) ? $data['email'] : '' ?>"
+                                    >
+                                    <?php if (!empty($email_error)): ?>
+                                        <div class="alert alert-danger"><?= $email_error ?></div>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Password</label>
-                                    <input type="password" name="password" class="form-control" id="exampleInputPassword1">
+                                    <input type="password"
+                                           name="password"
+                                           class="form-control"
+                                           id="exampleInputPassword1"
+                                           value="<?= !empty($data['password']) ? $data['password'] : '' ?>"
+                                    >
+                                    <?php if (!empty($password_error)): ?>
+                                        <div class="alert alert-danger"><?= $password_error ?></div>
+                                    <?php endif; ?>
+
+
                                 </div>
                                 <button type="submit" class="btn btn-primary">Create an account</button>
                             </form>

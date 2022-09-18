@@ -7,8 +7,8 @@ use App\Validators\Base\UserBaseValidator;
 class UserCreateValidator extends UserBaseValidator
 {
     protected array $errors = [
-        'name_error' => 'The name should contain more than two symbols',
-        'surname_error' => 'The name should contain more than two symbols',
+        'name_error' => 'The name should contain at least two symbols',
+        'surname_error' => 'The name should contain at least two symbols',
         'email_error' => 'Email is invalid',
         'password_error' => 'Password is invalid',
     ];

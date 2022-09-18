@@ -22,10 +22,10 @@ class UsersController extends Controller
                 redirect('login');
             }
         }
-        $data['data']=$fields;
+        $data['data'] =$fields;
         $errors = array_merge($validator->getErrors(),['email_error' => 'User with this email already exists']);
         $data += $errors;
-
+//        dd($data);
         View::render('auth/register', $data);
     }
 }
