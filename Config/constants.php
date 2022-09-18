@@ -9,7 +9,7 @@ const CSS_URL = ASSET_URL  . '/css';
 const JS_URL = ASSET_URL  . '/js';
 const LIBS_URL = ASSET_URL  . '/libs';
 const APP_DIR = BASE_DIR . '/App';
-const VIEW_DIR = APP_DIR . '/Views';
+const VIEW_DIR = APP_DIR . '/Views/';
 const MODEL_DIR = APP_DIR . '/Models';
 const CONTROLLER_DIR = APP_DIR . '/Controllers';
 

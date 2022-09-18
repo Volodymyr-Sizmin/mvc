@@ -10,8 +10,6 @@ trait Queryable
 
     static protected string|null $tablename = "users";
 
-
-
     static protected string $query = "";
 
     protected array  $commands =[];

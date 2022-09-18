@@ -17,9 +17,9 @@ if (!session_id()){
 //dd(\Core\Model::delete(5));
 //dd(\Core\Model::findBy('age', "35")->get());
 //dd(\Core\Model::findBy('age', "35"));
-$fields= ['name'=>'Serhiy', 'surname'=>'Serhienko', 'age'=>'34'];;
-$id = 11;
-dd(\Core\Model::create($fields));
+//$fields= ['name'=>'Serhiy', 'surname'=>'Serhienko', 'age'=>'34'];;
+//$id = 11;
+//dd(\Core\Model::create($fields));
 //dd(\Core\Model::update($fields, $id));
 //dd(\Core\Model::where('age', '>',25 ));
 try {
