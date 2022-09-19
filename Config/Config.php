@@ -10,7 +10,6 @@ class Config
     public static function get(string $name)
     {
         $config  = include __DIR__. '/configs.php';
-        d("call configs");
         $keys = explode('.', $name);
 
         return self::findByKeys($keys, $config);

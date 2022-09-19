@@ -19,7 +19,6 @@ class Router
 
         $route = "/^{$route}$/i";
         $this->routes[$route] = $params;
-        d("Params", $params);
     }
 
     public function dispatch(string $url)
@@ -27,7 +26,6 @@ class Router
         $url = trim($url, '/');
         $url = $this->removeQueryStringVar($url);
         if ($this->match($url)) {
-            d(" params controller", $this->params['controller']);
             if (array_key_exists('method', $this->params) && ($_SERVER['REQUEST_METHOD'] !== $this->params['method'])) {
                 throw new \Exception("Method " . $_SERVER['REQUEST_METHOD'] . " doesn't supported by this route");
             }
@@ -35,7 +33,6 @@ class Router
 
             if (class_exists($this->params['controller'])) {
                 $controller = $this->params['controller'];
-                d('Controller', $this->params['controller']);
                 unset($this->params['controller']);
 
                 if (method_exists($controller, $this->params['action'])){
@@ -46,7 +43,13 @@ class Router
                     if ($controller->before($action)) {
                         call_user_func_array([$controller, $action], $this->params);
                         $controller->after($action);
+                    } else{
+                        if (empty($_SERVER['HTTP_REFERER'])) {
+                            redirect();
+                        }
+                        redirectBack();
                     }
+
                     } else {
                     throw new \Exception("Action {$this->params['action']}  in class {$controller} not found");
                 }
@@ -72,9 +75,7 @@ class Router
     protected function setParams(string $route, array $matches, array $params)
 {
     preg_match_all('/\(?P<[\w]+>\\\\(\w[\+])\)/', $route, $types);
-    d($matches);
     $matches = array_filter($matches, fn($key) => is_string($key), ARRAY_FILTER_USE_KEY);
-    d($matches);
     if (!empty($types)) {
         $step = 0;
         $lastkey = count($types) - 1;
